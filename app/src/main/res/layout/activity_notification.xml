@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutRootView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorWhite">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideLineTop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="@dimen/dp_24" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideLineBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="@dimen/dp_24" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideLineStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/dp_24" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideLineEnd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/dp_24" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageViewBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_minus_10"
+            android:layout_marginTop="@dimen/dp_minus_10"
+            android:padding="@dimen/dp_10"
+            app:layout_constraintStart_toEndOf="@id/guideLineStart"
+            app:layout_constraintTop_toBottomOf="@id/guideLineTop"
+            app:srcCompat="@drawable/ic_back" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_8"
+            android:text="Notification"
+            android:textSize="@dimen/sp_18"
+            app:layout_constraintBottom_toBottomOf="@id/imageViewBack"
+            app:layout_constraintStart_toEndOf="@+id/imageViewBack"
+            app:layout_constraintTop_toTopOf="@id/imageViewBack" />
+
+        <!--below text "Clear All", only visible after we got notification from response-->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textViewClearAllNotifications"
+            style="@style/MediumTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dp_0"
+            android:layout_marginStart="@dimen/dp_18"
+            android:layout_marginEnd="@dimen/dp_minus_10"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/dp_10"
+            android:text="hghgjhhkjkjlk;l,"
+            android:textColor="@color/colorPurple"
+            android:textSize="@dimen/sp_14"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/imageViewBack"
+            app:layout_constraintEnd_toStartOf="@id/guideLineEnd"
+            app:layout_constraintTop_toTopOf="@id/imageViewBack" />
+
+        <RelativeLayout
+            android:id="@+id/relativeLayoutNotification"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="@dimen/dp_0"
+            android:layout_marginTop="@dimen/dp_12"
+            app:layout_constraintBottom_toTopOf="@id/guideLineBottom"
+            app:layout_constraintEnd_toStartOf="@id/guideLineEnd"
+            app:layout_constraintStart_toEndOf="@id/guideLineStart"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewBack">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewNotification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:overScrollMode="never"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_notification_list" />
+
+            <!--<com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmerFrameLayoutNotification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:shimmer_auto_start="false">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <include layout="@layout/item_notification_shimmer_placeholder" />
+
+                    <include layout="@layout/item_notification_shimmer_placeholder" />
+
+                    <include layout="@layout/item_notification_shimmer_placeholder" />
+
+                    <include layout="@layout/item_notification_shimmer_placeholder" />
+
+                    <include layout="@layout/item_notification_shimmer_placeholder" />
+                </LinearLayout>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>-->
+
+        </RelativeLayout>
+
+        <!--<androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayoutNoDataFound"
+            android:layout_width="@dimen/dp_0"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp_25"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/guideLineBottom"
+            app:layout_constraintEnd_toStartOf="@id/guideLineEnd"
+            app:layout_constraintStart_toEndOf="@id/guideLineStart"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewBack">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageViewNoDataFound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/no_notifications"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/textViewTitleNoDataFound"
+                style="@style/BoldTextViewStyle"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_32"
+                android:gravity="center"
+                android:maxLines="3"
+                android:text="@string/message_no_notifications"
+                android:textSize="@dimen/sp_16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewNoDataFound" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
